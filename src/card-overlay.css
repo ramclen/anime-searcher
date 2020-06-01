@@ -1,0 +1,8 @@
+.card:hover .card-img-overlay {
+  visibility: visible;
+  background-color: #3333339e;
+}
+
+.card-img-overlay {
+  visibility: hidden;
+}
