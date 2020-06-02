@@ -1,5 +1,5 @@
 import React from "react";
-import kitsu from "./api/kitsu";
+import kitsu from "../api/kitsu";
 
 
 export default class AnimeList extends React.Component {
@@ -10,7 +10,12 @@ export default class AnimeList extends React.Component {
       .then(res => res.data)
       .then(res => {
         let _animes = res.data.map(e => {
-          return { id: e.id, img: e.attributes.posterImage.medium, description: e.attributes.synopsis, title: e.attributes.titles.en_jp }
+          return {
+            id: e.id,
+            title: e.attributes.titles.en_jp,
+            description: e.attributes.synopsis,
+            img: e.attributes.posterImage.medium
+          }
         })
         this.setState({ animes: _animes })
       });
