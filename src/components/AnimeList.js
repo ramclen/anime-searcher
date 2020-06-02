@@ -1,30 +1,17 @@
 import React from "react";
-import kitsu from "../api/kitsu";
 
 
 export default class AnimeList extends React.Component {
   state = { animes: [] };
 
-  componentDidMount() {
-    kitsu.get('anime')
-      .then(res => res.data)
-      .then(res => {
-        let _animes = res.data.map(e => {
-          return {
-            id: e.id,
-            title: e.attributes.titles.en_jp,
-            description: e.attributes.synopsis,
-            img: e.attributes.posterImage.medium
-          }
-        })
-        this.setState({ animes: _animes })
-      });
-  }
-
   render() {
+    if (!this.props.animes) {
+      return (<div />);
+    }
+
     return (
       <div className="row">
-        {this.state.animes.map(anime => (
+        {this.props.animes.map(anime => (
           <div className="col-md-2 mb-3">
             <CardComponent key={anime.id} anime={anime} />
           </div>
