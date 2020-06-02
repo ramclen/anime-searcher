@@ -1,15 +1,29 @@
 import React from "react";
+import kitsu from "./api/kitsu";
 
 
 export default class AnimeList extends React.Component {
+  state = { animes: [] };
+
+  componentDidMount() {
+    kitsu.get('anime')
+      .then(res => res.data)
+      .then(res => {
+        let _animes = res.data.map(e => {
+          return { id: e.id, img: e.attributes.posterImage.medium, description: e.attributes.synopsis, title: e.attributes.titles.en_jp }
+        })
+        this.setState({ animes: _animes })
+      });
+  }
+
   render() {
     return (
-      <div className="col-md-2">
-        <CardComponent anime={{
-          img: 'https://media.kitsu.io/anime/poster_images/6448/medium.jpg?1431828590',
-          title: 'Card title',
-          description: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
-        }} />
+      <div className="row">
+        {this.state.animes.map(anime => (
+          <div className="col-md-2 mb-3">
+            <CardComponent key={anime.id} anime={anime} />
+          </div>
+        ))}
       </div>
     );
   }
