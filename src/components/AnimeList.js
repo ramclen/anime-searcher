@@ -12,8 +12,8 @@ export default class AnimeList extends React.Component {
     return (
       <div className="row">
         {this.props.animes.map(anime => (
-          <div className="col-md-2 mb-3">
-            <CardComponent key={anime.id} anime={anime} />
+          <div key={anime.id} className="col-md-2 mb-3">
+            <CardComponent anime={anime} />
           </div>
         ))}
       </div>
