@@ -1,0 +1,25 @@
+.autocomplete {
+  display: none;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.autocomplete ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+.autocomplete li {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 0.25rem;
+  list-style: none;
+}
+
+.autocomplete li:hover {
+  background-color: #8080803b;
+}
+
+.autocomplete.show {
+  display: block;
+}
